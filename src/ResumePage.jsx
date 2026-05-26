@@ -8,7 +8,7 @@ export default function ResumePage() {
         <h1>Resume</h1>
         <div className="resume-frame">
           <iframe
-            src="/Jack_Wong_Resume.pdf"
+            src={`${import.meta.env.BASE_URL}Jack_Wong_Resume.pdf`}
             title="Jack Wong Resume"
             className="resume-iframe"
           />

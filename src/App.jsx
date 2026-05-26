@@ -26,7 +26,7 @@ function Home({ experience, projects, onViewResume }) {
               </button>
             </li>
             <li>
-              <a href="/Jack_Wong_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href={`${import.meta.env.BASE_URL}Jack_Wong_Resume.pdf`} target="_blank" rel="noopener noreferrer">
                 <button className={activeSection === 'resume' ? 'active' : ''}>
                   Resume
                 </button>
@@ -55,7 +55,7 @@ function Home({ experience, projects, onViewResume }) {
             <button className="btn btn-secondary" onClick={() => scrollToSection('projects')}>
               View My Work
             </button>
-            <a href="/Jack_Wong_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href={`${import.meta.env.BASE_URL}Jack_Wong_Resume.pdf`} target="_blank" rel="noopener noreferrer">
                 <button className="btn btn-secondary">
                 View Resume
                 </button>
