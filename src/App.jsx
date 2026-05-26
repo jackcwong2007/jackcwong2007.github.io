@@ -50,7 +50,7 @@ function Home({ experience, projects, onViewResume }) {
         <div className="hero-content">
           <h1>Jack Wong</h1>
           <p className="tagline">Developer • Student • Problem Solver</p>
-          <p className="bio">Hey, I'm Jack!</p>
+          <p className="bio">Dev @ CPRT | Computer Systems Engineering @ Carleton University</p>
           <div className="cta-buttons">
             <button className="btn btn-secondary" onClick={() => scrollToSection('projects')}>
               View My Work
