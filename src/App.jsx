@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
+import hero from './assets/hero.png'
 import ResumePage from './ResumePage.jsx'
 
 function Home({ experience, projects, onViewResume }) {
@@ -46,7 +47,7 @@ function Home({ experience, projects, onViewResume }) {
         </div>
       </nav>
 
-      <header className="hero" id="home">
+      <header className="hero" id="home" style={{ backgroundImage: `url(${hero})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         <div className="hero-content">
           <h1>Jack Wong</h1>
           <p className="tagline">Developer • Student • Problem Solver</p>
