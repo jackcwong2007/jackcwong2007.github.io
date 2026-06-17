@@ -50,8 +50,8 @@ function Home({ experience, projects, onViewResume }) {
       <header className="hero" id="home" style={{ backgroundImage: `url(${hero})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         <div className="hero-content">
           <h1>Jack Wong</h1>
-          <p className="tagline">Developer • Student • Problem Solver</p>
-          <p className="bio">Dev @ CPRT | Computer Systems Engineering @ Carleton University</p>
+          <p className="tagline">Full-Stack Developer • Student • Problem Solver</p>
+          <p className="bio">Incoming Software Developer Intern @ Ross Video | Computer Systems Engineering @ Carleton</p>
           <div className="cta-buttons">
             <button className="btn btn-secondary" onClick={() => scrollToSection('projects')}>
               View My Work
@@ -135,25 +135,32 @@ function App() {
 
   const experience = [
     {
+      title: 'Software Developer Co-Op - Full Stack',
+      company: 'Ross Video',
+      period: 'Sept 2026 -> Dec 2026',
+      description: 'Incoming for the Carbonite Code team - Coming Soon!',
+      skills: []
+    },
+    {
       title: 'Software Developer',
       company: 'Carleton Planetary Robotics Team',
       period: 'Sept 2025 - Present',
       description: 'I focus on maximizing rover system performance and network visibility by building low-overhead Node.js monitoring services, tuning PID control loops, and optimizing path-planning algorithm decay values to cut CPU latency.',
-      skills: ['React', 'JavaScript', 'CSS', 'UI/UX']
+      skills: ['React', 'JavaScript', 'CSS', 'UI/UX', 'C/C++']
     },
     {
       title: 'Software & Outreach Member',
       company: 'Spark Youth Robotics Club (FRC 8729) ',
       period: 'Sept 2022 - Aug 2025',
       description: 'I programmed multi-mechanism competition robots in Java using the WPILib framework across eight FIRST Robotics events while driving local community outreach through hands-on electronics and Arduino workshops.',
-      skills: ['React', 'HTML', 'CSS', 'JavaScript']
+      skills: ['WPILib', 'CSS', 'Java']
     },
     {
       title: 'Teaching Assistant',
       company: 'Bell High School',
       period: 'Jan 2025 - June 2025',
       description: 'I mentored thirty computer science students by delivering focused technical lectures on programming logic and producing targeted educational videos that directly contributed to a 5% average grade improvement.',
-      skills: ['HTML', 'CSS', 'JavaScript', 'React']
+      skills: ['C', 'Public Speaking', 'Collaboration', 'Mentorship']
     }
   ]
 
@@ -177,7 +184,7 @@ function App() {
       link: 'https://github.com/jackcwong2007/Fashion-Prediction-Model'
     },
     {
-      title: 'Facial Recognition Model',
+      title: 'Gaze Tracking',
       description: 'In progress...',
       technologies: ['Python', 'OpenCV', 'ML', 'Computer Vision'],
       link: 'https://github.com/jackcwong2007/Facial-Recognition'
