@@ -51,7 +51,7 @@ function Home({ experience, projects, onViewResume }) {
         <div className="hero-content">
           <h1>Jack Wong</h1>
           <p className="tagline">Full-Stack Developer • Student • Problem Solver</p>
-          <p className="bio">Incoming Software Developer Intern @ Ross Video | Computer Systems Engineering @ Carleton</p>
+          <p className="bio">Software Developer Intern @ Ross Video | SCESoc VP Services | Computer Systems Engineering @ Carleton</p>
           <div className="cta-buttons">
             <button className="btn btn-secondary" onClick={() => scrollToSection('projects')}>
               View My Work
@@ -137,9 +137,9 @@ function App() {
     {
       title: 'Software Developer Co-Op - Full Stack',
       company: 'Ross Video',
-      period: 'Sept 2026 -> Dec 2026',
-      description: 'Incoming for the Carbonite Code team - Coming Soon!',
-      skills: []
+      period: 'Sept 2026 - Present',
+      description: 'Working on Software Switchers for Carbonite Code',
+      skills: ['C/C++', 'React', 'Selenium']
     },
     {
       title: 'Software Developer',
@@ -147,6 +147,13 @@ function App() {
       period: 'Sept 2025 - Present',
       description: 'I focus on maximizing rover system performance and network visibility by building low-overhead Node.js monitoring services, tuning PID control loops, and optimizing path-planning algorithm decay values to cut CPU latency.',
       skills: ['React', 'JavaScript', 'CSS', 'UI/UX', 'C/C++']
+    },
+    {
+      title: 'Vice President Services',
+      company: 'Systems and Computer Engineering Society (SCESoc)',
+      period: 'April 2026 - Present',
+      description: 'I manage the society\'s office, 30+ volunteers and 6 directors. Working alongside other execs to represent and advocate for students in the SCE department.',
+      skills: ['Leadership', 'Communication']
     },
     {
       title: 'Software & Outreach Member',
