@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#0A0A0A" />
+    </linearGradient>
+    <linearGradient id="redAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#D92626" />
+      <stop offset="100%" stop-color="#8B0000" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#222" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)" />
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6" />
+
+  <!-- Top Banner / HUD Header -->
+  <rect x="40" y="40" width="720" height="4" fill="url(#redAccent)" />
+  <text x="40" y="75" fill="#F5F2EB" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="20" font-weight="600" letter-spacing="2">CARLETON PLANETARY ROBOTICS TEAM</text>
+  <text x="40" y="98" fill="#D92626" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="13" font-weight="500" letter-spacing="1.5">TELEMETRY &amp; LOW-OVERHEAD NODE.JS MONITORING</text>
+  <text x="760" y="75" text-anchor="end" fill="#A19E97" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="13">SYSTEM STATUS: OPTIMAL</text>
+
+  <!-- Rover Blueprint Silhouette / Vector Art -->
+  <g transform="translate(140, 150)">
+    <!-- Chassis -->
+    <rect x="120" y="160" width="280" height="70" rx="6" fill="#1B1A19" stroke="#3A3835" stroke-width="2"/>
+    <rect x="140" y="140" width="100" height="30" rx="3" fill="#242321" stroke="#D92626" stroke-width="1.5"/>
+    <text x="190" y="160" text-anchor="middle" fill="#F5F2EB" font-family="'IBM Plex Sans', sans-serif" font-size="11" font-weight="600">MAIN AVIONICS</text>
+
+    <!-- Mast & Stereo Vision Head -->
+    <path d="M 180 140 L 180 60 L 210 60" fill="none" stroke="#D92626" stroke-width="3"/>
+    <circle cx="210" cy="60" r="14" fill="#141414" stroke="#D92626" stroke-width="2"/>
+    <circle cx="210" cy="60" r="6" fill="#D92626"/>
+    <path d="M 215 50 L 260 25" stroke="#A19E97" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="268" y="28" fill="#F5F2EB" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="12">STEREO CAM / LIDAR</text>
+
+    <!-- Suspension Bogie Arm -->
+    <path d="M 160 210 L 100 270 M 260 210 L 260 270 M 360 210 L 420 270" stroke="#3A3835" stroke-width="4"/>
+    <path d="M 100 270 L 420 270" stroke="#3A3835" stroke-width="3" stroke-dasharray="6,4"/>
+
+    <!-- Wheels -->
+    <!-- Wheel 1 -->
+    <g transform="translate(100, 270)">
+      <circle cx="0" cy="0" r="32" fill="#101010" stroke="#D92626" stroke-width="3"/>
+      <circle cx="0" cy="0" r="14" fill="#1B1A19" stroke="#3A3835" stroke-width="2"/>
+      <line x1="-32" y1="0" x2="32" y2="0" stroke="#262626" stroke-width="2"/>
+      <line x1="0" y1="-32" x2="0" y2="32" stroke="#262626" stroke-width="2"/>
+    </g>
+    <!-- Wheel 2 -->
+    <g transform="translate(260, 270)">
+      <circle cx="0" cy="0" r="32" fill="#101010" stroke="#D92626" stroke-width="3"/>
+      <circle cx="0" cy="0" r="14" fill="#1B1A19" stroke="#3A3835" stroke-width="2"/>
+      <line x1="-32" y1="0" x2="32" y2="0" stroke="#262626" stroke-width="2"/>
+      <line x1="0" y1="-32" x2="0" y2="32" stroke="#262626" stroke-width="2"/>
+    </g>
+    <!-- Wheel 3 -->
+    <g transform="translate(420, 270)">
+      <circle cx="0" cy="0" r="32" fill="#101010" stroke="#D92626" stroke-width="3"/>
+      <circle cx="0" cy="0" r="14" fill="#1B1A19" stroke="#3A3835" stroke-width="2"/>
+      <line x1="-32" y1="0" x2="32" y2="0" stroke="#262626" stroke-width="2"/>
+      <line x1="0" y1="-32" x2="0" y2="32" stroke="#262626" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Telemetry Data Cards -->
+  <g transform="translate(40, 480)">
+    <rect width="220" height="75" rx="3" fill="#141414" stroke="#262626"/>
+    <rect width="4" height="75" fill="#D92626"/>
+    <text x="18" y="26" fill="#A19E97" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="11">PID CONTROL LOOP</text>
+    <text x="18" y="52" fill="#F5F2EB" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="18" font-weight="600">50 Hz TUNED</text>
+  </g>
+
+  <g transform="translate(290, 480)">
+    <rect width="220" height="75" rx="3" fill="#141414" stroke="#262626"/>
+    <rect width="4" height="75" fill="#D92626"/>
+    <text x="18" y="26" fill="#A19E97" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="11">PATH-PLANNING DECAY</text>
+    <text x="18" y="52" fill="#F5F2EB" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="18" font-weight="600">-28% CPU LATENCY</text>
+  </g>
+
+  <g transform="translate(540, 480)">
+    <rect width="220" height="75" rx="3" fill="#141414" stroke="#262626"/>
+    <rect width="4" height="75" fill="#D92626"/>
+    <text x="18" y="26" fill="#A19E97" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="11">ROVER TELEMETRY BUS</text>
+    <text x="18" y="52" fill="#F5F2EB" font-family="'IBM Plex Sans', monospace, sans-serif" font-size="18" font-weight="600">NODE.JS STREAM</text>
+  </g>
+</svg>

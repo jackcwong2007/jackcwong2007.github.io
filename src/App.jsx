@@ -1,11 +1,33 @@
-import { useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import hero from './assets/hero.png'
+import heroImage from './assets/hero.png'
 import ResumePage from './ResumePage.jsx'
 
-function Home({ experience, projects, onViewResume }) {
+function Home({ experience, projects }) {
   const [activeSection, setActiveSection] = useState('home')
+  const resumeUrl = `${import.meta.env.BASE_URL}Jack_Wong_Resume.pdf`
+
+  useEffect(() => {
+    const sections = ['home', 'experience', 'projects']
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        }
+      },
+      { rootMargin: '-35% 0px -55% 0px' }
+    )
+
+    for (const id of sections) {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId)
@@ -17,112 +39,197 @@ function Home({ experience, projects, onViewResume }) {
 
   return (
     <div className="app">
-      <nav className="navbar">
-        <div className="nav-container">
-          <h2 className="logo">Jack Wong</h2>
-          <ul className="nav-links">
-            <li>
-              <button onClick={() => scrollToSection('home')} className={activeSection === 'home' ? 'active' : ''}>
-                Home
-              </button>
-            </li>
-            <li>
-              <a href={`${import.meta.env.BASE_URL}Jack_Wong_Resume.pdf`} target="_blank" rel="noopener noreferrer">
-                <button className={activeSection === 'resume' ? 'active' : ''}>
+      <header className="site-header">
+        <div className="container header-inner">
+          <a
+            href="#home"
+            className="brand-mark"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection('home')
+            }}
+          >
+            <span>Jack Wong</span>
+          </a>
+
+          <nav aria-label="Primary">
+            <ul className="nav-links">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('home')}
+                  className={activeSection === 'home' ? 'nav-item active' : 'nav-item'}
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('experience')}
+                  className={activeSection === 'experience' ? 'nav-item active' : 'nav-item'}
+                >
+                  Experience
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('projects')}
+                  className={activeSection === 'projects' ? 'nav-item active' : 'nav-item'}
+                >
+                  Projects
+                </button>
+              </li>
+              <li>
+                <a
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-item"
+                >
                   Resume
-                </button>
-              </a>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection('experience')} className={activeSection === 'experience' ? 'active' : ''}>
-                Experience
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection('projects')} className={activeSection === 'projects' ? 'active' : ''}>
-                Projects
-              </button>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <header className="hero" id="home" style={{ backgroundImage: `url(${hero})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-        <div className="hero-content">
-          <h1>Jack Wong</h1>
-          <p className="tagline">Full-Stack Developer • Student • Problem Solver</p>
-          <p className="bio">Software Developer Intern @ Ross Video | SCESoc VP Services | Computer Systems Engineering @ Carleton</p>
-          <div className="cta-buttons">
-            <button className="btn btn-secondary" onClick={() => scrollToSection('projects')}>
-              View My Work
-            </button>
-            <a href={`${import.meta.env.BASE_URL}Jack_Wong_Resume.pdf`} target="_blank" rel="noopener noreferrer">
-                <button className="btn btn-secondary">
-                View Resume
-                </button>
-            </a>
-
-          </div>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </header>
 
-      <section className="experience-section" id="experience">
-        <div className="container">
-          <h2>Experience</h2>
-          <p className="section-subtitle">My professional journey and accomplishments</p>
-          <div className="experience-timeline">
-            {experience.map((job, index) => (
-              <div className="experience-card" key={index}>
-                <div className="timeline-marker"></div>
-                <div className="job-content">
-                  <div className="job-header">
-                    <h3>{job.title}</h3>
-                    <span className="period">{job.period}</span>
+      <main>
+        <section className="hero" id="home">
+          <div className="container hero-grid">
+            <div className="hero-copy">
+              <h1>Jack Wong</h1>
+              <p className="hero-lead">
+                Software Developer @ Ross Video | Computer Systems Engineering student @ Carleton | Vice President Services @ SCESoc
+              </p>
+              <div className="hero-actions">
+                <a
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  Open resume
+                </a>
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => scrollToSection('projects')}
+                >
+                  Browse projects
+                </button>
+              </div>
+            </div>
+
+            <figure className="hero-media">
+              <div className="hero-frame">
+                <img
+                  src={heroImage}
+                  alt="Carleton University, Ottawa"
+                />
+              </div>
+              <figcaption className="hero-caption">
+                Carleton University, Ottawa
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section className="section-band" id="experience">
+          <div className="container split-section">
+            <div className="section-rail">
+              <h2>Experience</h2>
+              <div className="red-rule" aria-hidden="true" />
+            </div>
+
+            <div className="experience-list">
+              {experience.map((job, index) => (
+                <article className="experience-entry" key={index}>
+                  <div className="entry-top">
+                    <div>
+                      <h3>{job.title}</h3>
+                      <p className="entry-org">{job.company}</p>
+                    </div>
+                    <span className="entry-period">{job.period}</span>
                   </div>
-                  <p className="company">{job.company}</p>
-                  <p className="description">{job.description}</p>
-                  <div className="skills-list">
+                  <p className="entry-description">{job.description}</p>
+                  <ul className="tag-list" aria-label="Skills used">
                     {job.skills.map((skill, idx) => (
-                      <span key={idx} className="skill-tag">{skill}</span>
+                      <li key={idx} className="tag">
+                        {skill}
+                      </li>
                     ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-band" id="projects">
+          <div className="container split-section">
+            <div className="section-rail">
+              <h2>Projects</h2>
+              <div className="red-rule" aria-hidden="true" />
+              <p className="section-summary">
+                What I do in my free time :)
+              </p>
+            </div>
+
+            <div className="project-grid">
+              {projects.map((project, index) => (
+                <article className="project-panel" key={index}>
+                  <div className="project-body">
+                    <h3>{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
                   </div>
-                </div>
-              </div>
-            ))}
+                  <div className="project-foot">
+                    <ul className="tag-list" aria-label="Technologies used">
+                      {project.technologies.map((tech, idx) => (
+                        <li key={idx} className="tag">
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link"
+                    >
+                      View on GitHub
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <section className="projects-section" id="projects">
-        <div className="container">
-          <h2>Personal Projects</h2>
-          <p className="section-subtitle">Cool things I've done</p>
-          <div className="project-grid">
-            {projects.map((project, index) => (
-              <div className="project-card" key={index}>
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-                </div>
-                <p className="project-description">{project.description}</p>
-                <div className="technologies">
-                  {project.technologies.map((tech, idx) => (
-                    <span key={idx} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-                <a href={project.link} className="btn btn-secondary">View Project</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <div className="container">
-          <p>Jack Wong</p>
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <p className="footer-name">Jack Wong</p>
           <div className="social-links">
-            <a href="https://www.linkedin.com/in/jack-wong-29028b329/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/jackcwong2007" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="mailto:jackcwong2007@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+            <a
+              href="https://www.linkedin.com/in/jack-wong-29028b329/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/jackcwong2007"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            <a href="mailto:jackcwong2007@gmail.com">
+              jackcwong2007@gmail.com
+            </a>
           </div>
         </div>
       </footer>
@@ -131,80 +238,98 @@ function Home({ experience, projects, onViewResume }) {
 }
 
 function App() {
-  const navigate = useNavigate()
-
   const experience = [
     {
       title: 'Software Developer Co-Op - Full Stack',
       company: 'Ross Video',
       period: 'Sept 2026 - Present',
-      description: 'Working on Software Switchers for Carbonite Code',
-      skills: ['C/C++', 'React', 'Selenium']
+      description: 'Building diagnostic tools for virtual production switchers & setting up automated build servers to free up laptops.',
+      skills: ['C/C++', 'React', "Java"]
     },
     {
       title: 'Software Developer',
       company: 'Carleton Planetary Robotics Team',
       period: 'Sept 2025 - Present',
-      description: 'I focus on maximizing rover system performance and network visibility by building low-overhead Node.js monitoring services, tuning PID control loops, and optimizing path-planning algorithm decay values to cut CPU latency.',
+      description:
+        'Maximizing rover system performance and network visibility by building low-overhead Node.js monitoring services, tuning PID control loops, and optimizing path-planning algorithm decay values to cut CPU latency.',
       skills: ['React', 'JavaScript', 'CSS', 'UI/UX', 'C/C++']
     },
     {
       title: 'Vice President Services',
       company: 'Systems and Computer Engineering Society (SCESoc)',
       period: 'April 2026 - Present',
-      description: 'I manage the society\'s office, 30+ volunteers and 6 directors. Working alongside other execs to represent and advocate for students in the SCE department.',
+      description:
+        "Managing the society's office, 30+ volunteers, and 6 directors while working with the executive team to represent and advocate for students in the SCE department.",
       skills: ['Leadership', 'Communication']
     },
     {
       title: 'Software & Outreach Member',
-      company: 'Spark Youth Robotics Club (FRC 8729) ',
+      company: 'Spark Youth Robotics Club (FRC 8729)',
       period: 'Sept 2022 - Aug 2025',
-      description: 'I programmed multi-mechanism competition robots in Java using the WPILib framework across eight FIRST Robotics events while driving local community outreach through hands-on electronics and Arduino workshops.',
+      description:
+        'Programmed multi-mechanism competition robots in Java using the WPILib framework across eight FIRST Robotics events while driving local community outreach through hands-on electronics and Arduino workshops.',
       skills: ['WPILib', 'CSS', 'Java']
     },
     {
       title: 'Teaching Assistant',
       company: 'Bell High School',
       period: 'Jan 2025 - June 2025',
-      description: 'I mentored thirty computer science students by delivering focused technical lectures on programming logic and producing targeted educational videos that directly contributed to a 5% average grade improvement.',
+      description:
+        'Mentored thirty computer science students by delivering focused technical lectures on programming logic and producing targeted educational videos that contributed to a 5% average grade improvement.',
       skills: ['C', 'Public Speaking', 'Collaboration', 'Mentorship']
     }
   ]
 
   const projects = [
     {
+      title: 'Wii Cursor Emulator',
+      description:
+        'Wii Remote-style pointer that streams a phone’s gyroscope and orientation at 60 Hz over the local network and maps that motion onto an on-screen desktop cursor.',
+      technologies: ['Node.js', 'Javascript', 'Electron', 'Deviceorientation / DeviceMotion API'],
+      link: 'https://github.com/jackcwong2007/wii'
+    },
+    {
+      title: 'WordRot',
+      description:
+        'Browser-based JavaScript game inspired by Word Bomb on jklm.fun, but with a twist. Made for Stupid Ideas Hackathon 2026.',
+      technologies: ['Javascript', 'HTML', 'CSS'],
+      link: 'https://github.com/jackcwong2007/word-bomb'
+    },
+    {
       title: 'Facebook Scraper',
-      description: 'A Facebook group scraper bot built with Selenium and discord.py that utilizes randomized polling intervals to efficiently monitor social media content and send automated, real-time keyword alerts to Discord.',
+      description:
+        'A Facebook group scraper bot built with Selenium and discord.py using randomized polling intervals to monitor posts and send real-time keyword alerts to Discord.',
       technologies: ['Python', 'Selenium', 'Automation', 'API'],
       link: 'https://github.com/jackcwong2007/Facebook-Scraper'
     },
     {
       title: 'Paragon',
-      description: 'An educational game developed in Python using Pygame to apply object-oriented programming, organized file structures, and version control while managing project goals independently.',
-      technologies: ['Python', 'Pygame', 'OOP', 'Github', 'Git'],
+      description:
+        'An educational game developed in Python using Pygame focused on clean object-oriented architecture, structured game state management, and disciplined version control.',
+      technologies: ['Python', 'Pygame', 'OOP', 'GitHub', 'Git'],
       link: 'https://github.com/jackcwong2007/Paragon-'
     },
     {
       title: 'Fashion Prediction Model',
-      description: 'A deep learning model built and trained in Python using TensorFlow and Keras to accurately categorize clothing images from the Fashion-MNIST dataset.',
+      description:
+        'A deep learning classifier built and trained in Python with TensorFlow and Keras to categorize clothing images from the Fashion-MNIST dataset.',
       technologies: ['Python', 'TensorFlow', 'Keras'],
       link: 'https://github.com/jackcwong2007/Fashion-Prediction-Model'
     },
     {
       title: 'Gaze Tracking',
-      description: 'In progress...',
+      description:
+        'Computer vision experiment tracking eye gaze direction using OpenCV and machine learning models. Work in progress.',
       technologies: ['Python', 'OpenCV', 'ML', 'Computer Vision'],
       link: 'https://github.com/jackcwong2007/Facial-Recognition'
     }
   ]
 
-  const goToResume = () => navigate('/view-pdf')
-
   return (
     <Routes>
       <Route
         path="/"
-        element={<Home experience={experience} projects={projects} onViewResume={goToResume} />}
+        element={<Home experience={experience} projects={projects} />}
       />
       <Route path="/view-pdf" element={<ResumePage />} />
     </Routes>
