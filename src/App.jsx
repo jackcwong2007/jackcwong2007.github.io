@@ -240,6 +240,13 @@ function Home({ experience, projects }) {
 function App() {
   const experience = [
     {
+      title: 'Mechatronics Research Assistant',
+      company: 'Advanced Biomechatronics and Locomotion Lab',
+      period: 'Starting Jan 2027',
+      description: 'Part of ICAAV core group to develop autonomous vehicles.',
+      skills: ['C/C++', 'ROS2', "Java", "Python"]
+    },
+    {
       title: 'Software Developer Co-Op - Full Stack',
       company: 'Ross Video',
       period: 'Sept 2026 - Present',
@@ -249,7 +256,7 @@ function App() {
     {
       title: 'Software Developer',
       company: 'Carleton Planetary Robotics Team',
-      period: 'Sept 2025 - Present',
+      period: 'Sept 2025 - Dec 2026',
       description:
         'Maximizing rover system performance and network visibility by building low-overhead Node.js monitoring services, tuning PID control loops, and optimizing path-planning algorithm decay values to cut CPU latency.',
       skills: ['React', 'JavaScript', 'CSS', 'UI/UX', 'C/C++']
